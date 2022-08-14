@@ -6,6 +6,7 @@ import About from './pages/About';
 import Detail from './pages/Detail';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import Edit from './pages/Edit';
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 
@@ -23,6 +24,7 @@ function App() {
             <Route path="/" element={ user ? <Home /> : <Navigate to="login" /> } />
             <Route path="/about" element={ user ? <About /> : <Navigate to="login" /> } />
             <Route path="/detail/:id" element={ user ? <Detail /> : <Navigate to="login" /> } />
+            <Route path='/edit/:id' element={ user ? <Edit /> : <Navigate to="login" /> } />
             <Route path="/login" element={ !user ? <Login /> : <Navigate to="/" /> } />
             <Route path="/signup" element={ !user ? <Signup /> : <Navigate to="/" /> } />
             

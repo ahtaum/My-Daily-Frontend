@@ -42,7 +42,10 @@ const Detail = () => {
                         </div>
                         <p className="my-3 desc-detail">{ data.desc }</p>
                         
-                        <Link className="link text-blue-600 font-bold" to="/">Kembali</Link>
+                        <div>
+                            <Link className="link text-lime-500 font-bold" to={`/edit/${data._id}`}>Edit</Link>
+                            <Link className="link text-blue-600 font-bold mx-3" to="/">Kembali</Link>
+                        </div>
                     </div>
                 </div>
             )) }
