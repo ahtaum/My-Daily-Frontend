@@ -33,6 +33,8 @@ const Navbar = () => {
                             </>
                         ) }
                     </ul>
+
+                    { user ? <label tabIndex="1" className="text-2xl font-bold">{ user.username }</label> : "" }
                 </div>
             </div>
             

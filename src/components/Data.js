@@ -35,8 +35,8 @@ const Data = ({ daily }) => {
                 </div>
 
                 <h2 className="card-title">{ daily.title }</h2>
-                <p className="my-5">{ daily.desc }</p>
-                <p className="my-5">{formatDistanceToNow(new Date(daily.createdAt), { addSuffix: true })}</p>
+                <p className="my-5 text-desc">{ daily.desc.substring(0, 250) }...</p>
+                <p className="my-5 text-slate-500">{formatDistanceToNow(new Date(daily.createdAt), { addSuffix: true })}</p>
 
                 <Link to={`/detail/${daily._id}`} className="underline text-blue-600 font-bold">Details</Link>
 

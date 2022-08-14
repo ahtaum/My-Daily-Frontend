@@ -14,13 +14,13 @@ const Login = () => {
     }
 
     return (
-        <section id="login-form" className="container my-5">
+        <section id="login-form" className="container my-5 lg:p-0 p-5">
 
-            <div className="card bg-base-100 shadow-xl w-96 mx-auto">
+            <div className="card bg-base-100 shadow-xl lg:w-96 mx-auto">
                 <div className="card-body">        
                     <form onSubmit={handleSubmit}>
 
-                        <h3>Login</h3>
+                        <h3 className="text-center text-3xl my-3 font-bold">Login</h3>
 
                         { error && 
                             <div className="alert alert-error shadow-lg my-3">
@@ -35,17 +35,17 @@ const Login = () => {
                             <label className="label">
                                 <span className="label-text">Username</span>
                             </label>
-                            <input type="text" placeholder="Your Username..." className="input input-bordered w-full max-w-xs" onChange={(e) => setUsername(e.target.value)} value={username} />
+                            <input type="text" placeholder="Your Username..." className="input input-bordered w-full lg:max-w-xs" onChange={(e) => setUsername(e.target.value)} value={username} />
                         </div>
 
                         <div className="mb-3">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="password" placeholder="Your Password..." className="input input-bordered w-full max-w-xs" onChange={(e) => setPassword(e.target.value)} value={password} />
+                            <input type="password" placeholder="Your Password..." className="input input-bordered w-full lg:max-w-xs" onChange={(e) => setPassword(e.target.value)} value={password} />
                         </div>
 
-                        <button className="btn btn-primary" disabled={isLoading}>Login</button>
+                        <button className="btn btn-primary w-full" disabled={isLoading}>Login</button>
 
                     </form>
                 </div>

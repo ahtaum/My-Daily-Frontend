@@ -1,4 +1,5 @@
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
+import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 import { useEffect } from "react"
 import { useDailyContext } from "../hooks/useDailyContext"
 import { useAuthContext } from '../hooks/useAuthContext';
@@ -14,7 +15,7 @@ const Detail = () => {
             if(!user) {
                 return
             }
-
+            
             const response = await fetch(`/api/my-daily/get-daily/${id}`, {
                 headers: {
                     'Authorization': `Bearer ${user.token}`
@@ -31,10 +32,21 @@ const Detail = () => {
     }, [dispatch, user])
 
     return (
-        <section className="container" id="detail-page">
+        <section className="container lg:p-0 p-5" id="detail-page">
             { daily && daily.map(data => (
-                <div key={data._id}>
-                    <h1>{data.title}</h1>
+                <div className="card w-full bg-base-100 shadow-xl my-8" key={ data._id }>
+                    <div className="card-body">
+                        <div>
+                            <h1 className="card-title">{ data.title}</h1>
+                            <p className="mt-1 text-slate-500">{formatDistanceToNow(new Date(data.createdAt), { addSuffix: true })}, { user.username }</p>
+                        </div>
+                        <p className="my-3 desc-detail">{ data.desc }</p>
+                        
+                        <div>
+                            <Link className="link text-lime-500 font-bold" to={`/edit/${data._id}`}>Edit</Link>
+                            <Link className="link text-blue-600 font-bold mx-3" to="/">Kembali</Link>
+                        </div>
+                    </div>
                 </div>
             )) }
         </section>
