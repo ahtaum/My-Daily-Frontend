@@ -41,6 +41,7 @@ const Data = ({ daily }) => {
                 <Link to={`/detail/${daily._id}`} className="underline text-blue-600 font-bold">Details</Link>
 
                 <div className="card-actions justify-end">
+                    <Link className="btn btn-success mx-2" to={`/edit/${daily._id}`}>Edit</Link>
                     <span className="btn btn-error" onClick={handleClick}><FiTrash /></span>
                 </div>
             </div>

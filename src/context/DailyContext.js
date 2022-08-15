@@ -16,6 +16,10 @@ export const dailyReducer = (state, action) => {
           return { 
             daily: [action.payload, ...state.daily] 
           }
+        case 'UPDATE_DAILY':
+          return {
+            daily: state.daily.filter(w => w._id !== action.payload._id)
+          }
         case 'DELETE_DAILY':
           return { 
             daily: state.daily.filter(w => w._id !== action.payload._id) 
