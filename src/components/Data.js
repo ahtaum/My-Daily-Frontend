@@ -31,18 +31,17 @@ const Data = ({ daily }) => {
             <div className="card-body">
                 
                 <div className="relative">
-                    <div className="absolute right-0">Stress: <span className="text-lg font-bold text-red-500">{daily.stress_point}</span></div>
+                    <div className="absolute right-0"><span className="btn btn-error" onClick={handleClick}><FiTrash /></span></div>
                 </div>
 
                 <h2 className="card-title">{ daily.title }</h2>
-                <p className="my-5 text-desc">{ daily.desc.substring(0, 250) }...</p>
+                <p className="my-5 text-desc">{ daily.desc ? daily.desc.substring(0, 250) : "" }...</p>
                 <p className="my-5 text-slate-500">{formatDistanceToNow(new Date(daily.createdAt), { addSuffix: true })}</p>
 
                 <Link to={`/detail/${daily._id}`} className="underline text-blue-600 font-bold">Details</Link>
 
                 <div className="card-actions justify-end">
-                    <Link className="btn btn-success mx-2" to={`/edit/${daily._id}`}>Edit</Link>
-                    <span className="btn btn-error" onClick={handleClick}><FiTrash /></span>
+                    <Link className="btn btn-success" to={`/edit/${daily._id}`}>Edit</Link>
                 </div>
             </div>
         </div>

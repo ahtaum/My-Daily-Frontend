@@ -31,8 +31,6 @@ const Detail = () => {
         fetchDaily()
     }, [dispatch, user])
 
-    // console.log(daily.username[1])
-
     return (
         <section className="container lg:p-0 p-5" id="detail-page">
             { daily && daily.map(data => (

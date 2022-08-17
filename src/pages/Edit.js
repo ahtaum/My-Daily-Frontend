@@ -1,5 +1,5 @@
 import './edit.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom';
 import { useDailyContext } from '../hooks/useDailyContext';
 import { useAuthContext } from '../hooks/useAuthContext';
@@ -10,11 +10,9 @@ const Edit = () => {
     const { user } = useAuthContext()
     const { id } = useParams()
 
-    const [title, setTitle] = useState(null)
-    const [desc, setDesc] = useState(null)
-    const [stress_point, setStress_point] = useState(null)
-    const [error, setError] = useState(null)
-    const [emptyField, setEmptyField] = useState([])
+    const [title, setTitle] = useState('')
+    const [desc, setDesc] = useState('')
+    const [error, setError] = useState('')
     const [success, setSuccess] = useState(false)
 
     const handleSubmit = async (e) => {
@@ -25,7 +23,7 @@ const Edit = () => {
             return
         }
 
-        const daily = {title, desc, stress_point}
+        const daily = {title, desc}
 
         const response = await fetch(`/api/my-daily/update-daily/${id}`, {
             method: 'PATCH',
@@ -37,20 +35,41 @@ const Edit = () => {
           })
         const json = await response.json()
 
-        if(!response.ok) {
-            setError(response.error)
-            setEmptyField(response.emptyField)
+        if(json.error) {
+            setError(json.error)
         }
         if(response.ok) {
-            setEmptyField([])
-            setError(null)
-            setTitle(null)
-            setDesc(null)
-            setStress_point(null)
+            setError('')
+            setTitle('')
+            setDesc('')
             setSuccess(true)
             dispatch({ type: 'UPDATE_DAILY', payload: json })
         }
     }
+
+    useEffect(() => {
+        const fetchDaily = async () => {
+            if(!user) {
+                return
+            }
+            
+            const response = await fetch(`/api/my-daily/get-daily/${id}`, {
+                headers: {
+                    'Authorization': `Bearer ${user.token}`
+                }
+            })
+            const json = await response.json()
+
+            setTitle(json.title)
+            setDesc(json.desc)
+
+            if(response.ok) {
+                dispatch({ type: 'GET_SINGLE_DAILY', payload: json })
+            }
+        }
+
+        fetchDaily()
+    }, [dispatch, user])
 
     return (
         <section id="edit-page" className="container my-5">
@@ -83,13 +102,6 @@ const Edit = () => {
                             <label className="input-group input-group-sm">
                                 <span>Title</span>
                                 <input type="text" placeholder="ngapain..." className="input input-bordered w-full" onChange={(e) => setTitle(e.target.value)} value={title} />
-                            </label>
-                        </div>
-
-                        <div className="form-control mb-3">
-                            <label className="input-group input-group-sm">
-                                <span>Stress</span>
-                                <input type="number" placeholder="ngapain..." className="input input-bordered w-full" onChange={(e) => setStress_point(e.target.value)} value={stress_point} />
                             </label>
                         </div>
 
