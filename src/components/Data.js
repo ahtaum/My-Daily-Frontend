@@ -13,7 +13,7 @@ const Data = ({ daily }) => {
             return
         }
 
-        const response = await fetch(`/api/my-daily/delete-daily/${daily._id}`, {
+        const response = await fetch(`https://my-daily-backend.herokuapp.com/api/my-daily/delete-daily/${daily._id}`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${user.token}`

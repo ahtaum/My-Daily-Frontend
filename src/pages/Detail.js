@@ -17,7 +17,7 @@ const Detail = () => {
                 return
             }
             
-            const response = await fetch(`/api/my-daily/get-daily/${id}`, {
+            const response = await fetch(`https://my-daily-backend.herokuapp.com/api/my-daily/get-daily/${id}`, {
                 headers: {
                     'Authorization': `Bearer ${user.token}`
                 }

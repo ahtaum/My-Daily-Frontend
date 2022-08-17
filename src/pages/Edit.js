@@ -26,7 +26,7 @@ const Edit = () => {
 
         const daily = {title, desc}
 
-        const response = await fetch(`/api/my-daily/update-daily/${id}`, {
+        const response = await fetch(`https://my-daily-backend.herokuapp.com/api/my-daily/update-daily/${id}`, {
             method: 'PATCH',
             body: JSON.stringify(daily),
             headers: {

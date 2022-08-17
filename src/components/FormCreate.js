@@ -23,7 +23,7 @@ const FormCreate = () => {
     
         const daily = {title, desc}
         
-        const response = await fetch('/api/my-daily/create-daily', {
+        const response = await fetch('https://my-daily-backend.herokuapp.com/api/my-daily/create-daily', {
           method: 'POST',
           body: JSON.stringify(daily),
           headers: {

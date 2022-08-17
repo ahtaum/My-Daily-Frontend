@@ -12,7 +12,7 @@ const Home = () => {
     
     useEffect(() => {
         const fetchDaily = async () => {
-            const response = await fetch(`/api/my-daily`, {
+            const response = await fetch(`https://my-daily-backend.herokuapp.com/api/my-daily`, {
                 headers: {
                     'Authorization': `Bearer ${user.token}`
                 }
