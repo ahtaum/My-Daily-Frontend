@@ -1,5 +1,5 @@
 import './home.css';
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDailyContext } from "../hooks/useDailyContext"
 import { useAuthContext } from '../hooks/useAuthContext';
 import Data from "../components/Data"
@@ -8,6 +8,7 @@ import FormCreate from "../components/FormCreate"
 const Home = () => {
     const { daily, dispatch } = useDailyContext()
     const { user } = useAuthContext()
+    const [loading, setLoading] = useState(true)
     
     useEffect(() => {
         const fetchDaily = async () => {
@@ -19,6 +20,7 @@ const Home = () => {
             const json = await response.json()
 
             if (response.ok) {
+                setLoading(false)
                 dispatch({type: 'SET_DAILY', payload: json})
             }
         }
@@ -36,6 +38,7 @@ const Home = () => {
             <div className="lg:grid lg:grid-cols-2 lg:gap-8 lg:p-0 p-5 md:grid md:grid-cols-2 md:gap-8 md:p-5">
 
                 <div>
+                    { loading && <div>Bentar...</div> }
                     { daily && daily.map(dataDaily => (
                         <Data daily={dataDaily} key={dataDaily._id} />
                     )) }

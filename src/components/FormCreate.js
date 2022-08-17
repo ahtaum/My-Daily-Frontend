@@ -11,6 +11,7 @@ const FormCreate = () => {
     const [error, setError] = useState(null)
     const [emptyField, setEmptyField] = useState([])
     const [success, setSuccess] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -37,12 +38,13 @@ const FormCreate = () => {
           setEmptyField(json.emptyField)
         }
         if (response.ok) {
-          setEmptyField([])
-          setError(null)
-          setTitle('')
-          setDesc('')
-          setSuccess(true)
-          dispatch({type: 'CREATE_DAILY', payload: json})
+            setEmptyField([])
+            setError(null)
+            setTitle('')
+            setDesc('')
+            setSuccess(true)
+            setSuccess(true) ? setLoading(true) : setLoading(false)
+            dispatch({type: 'CREATE_DAILY', payload: json})
         }
     
     }
@@ -80,7 +82,8 @@ const FormCreate = () => {
                 <textarea className={emptyField.includes('desc') ? 'textarea input-error' : 'textarea textarea-primary'} placeholder="deskripsi..." onChange={(e) => setDesc(e.target.value)} value={desc}></textarea>
             </div>
 
-            <button className="btn btn-primary">OK</button>
+            { loading && <button className="btn btn-primary" disabled={loading}>OK</button> }
+            { !loading && <button className="btn btn-primary">OK</button> }
 
         </form>
     );
