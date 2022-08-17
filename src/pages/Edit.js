@@ -14,6 +14,7 @@ const Edit = () => {
     const [desc, setDesc] = useState('')
     const [error, setError] = useState('')
     const [success, setSuccess] = useState(false)
+    const [loading, setLoading] = useState(true)
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -64,6 +65,7 @@ const Edit = () => {
             setDesc(json.desc)
 
             if(response.ok) {
+                setLoading(false)
                 dispatch({ type: 'GET_SINGLE_DAILY', payload: json })
             }
         }
@@ -74,8 +76,9 @@ const Edit = () => {
     return (
         <section id="edit-page" className="container my-5">
             <div className="card bg-base-100 shadow-xl w-full mx-auto lg:p-0 p-5">
-                <div className="card-body">        
-                    <form onSubmit={handleSubmit}>
+                <div className="card-body">
+                    { loading && <div>Bentar...</div> }    
+                    { !loading && <form onSubmit={handleSubmit}>
 
                     {error &&
                         <div className="alert alert-error shadow-lg mb-5">
@@ -110,11 +113,11 @@ const Edit = () => {
                         </div>
 
                         <div className="mt-5">
-                            <button className="btn btn-primary">OK</button>
+                            <button className="btn btn-primary">Submit</button>
                             <Link className="btn btn-error mx-3" to="/">Kembali</Link>
                         </div>
 
-                    </form>
+                    </form> }
                 </div>
             </div>
         </section>
