@@ -8,7 +8,6 @@ const FormCreate = () => {
 
     const [title, setTitle] = useState('')
     const [desc, setDesc] = useState('')
-    const [stress_point, setStress_point] = useState('')
     const [error, setError] = useState(null)
     const [emptyField, setEmptyField] = useState([])
     const [success, setSuccess] = useState(false)
@@ -21,7 +20,7 @@ const FormCreate = () => {
             return
         }
     
-        const daily = {title, desc, stress_point}
+        const daily = {title, desc}
         
         const response = await fetch('/api/my-daily/create-daily', {
           method: 'POST',
@@ -42,7 +41,6 @@ const FormCreate = () => {
           setError(null)
           setTitle('')
           setDesc('')
-          setStress_point('')
           setSuccess(true)
           dispatch({type: 'CREATE_DAILY', payload: json})
         }
@@ -79,14 +77,7 @@ const FormCreate = () => {
             </div>
 
             <div className="form-control mb-3">
-                <label className="input-group input-group-sm">
-                    <span>Stress Point</span>
-                    <input type="number" placeholder="skor stress..." className={emptyField.includes('stress_point') ? 'input input-bordered input-error' : 'input input-bordered'} onChange={(e) => setStress_point(e.target.value)} value={stress_point} />
-                </label>
-            </div>
-
-            <div className="form-control mb-3">
-                <textarea className={emptyField.includes('title') ? 'textarea input-error' : 'textarea textarea-primary'} placeholder="deskripsi..." onChange={(e) => setDesc(e.target.value)} value={desc}></textarea>
+                <textarea className={emptyField.includes('desc') ? 'textarea input-error' : 'textarea textarea-primary'} placeholder="deskripsi..." onChange={(e) => setDesc(e.target.value)} value={desc}></textarea>
             </div>
 
             <button className="btn btn-primary">OK</button>
