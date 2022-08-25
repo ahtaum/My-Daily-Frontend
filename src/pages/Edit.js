@@ -113,7 +113,7 @@ const Edit = () => {
                         </div>
 
                         <div className="mt-5">
-                            <button className="btn btn-primary">Submit</button>
+                            <button className="btn btn-primary" disabled={setLoading}>Submit</button>
                             <Link className="btn btn-error mx-3" to="/">Kembali</Link>
                         </div>
 
