@@ -9,6 +9,7 @@ import Login from './pages/Login'
 import Edit from './pages/Edit'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import NotFound from './pages/NotFound'
 
 function App() {
   const { user } = useAuthContext()
@@ -27,6 +28,7 @@ function App() {
             <Route path='/edit/:id' element={ user ? <Edit /> : <Navigate to="login" /> } />
             <Route path="/login" element={ !user ? <Login /> : <Navigate to="/" /> } />
             <Route path="/signup" element={ !user ? <Signup /> : <Navigate to="/" /> } />
+            <Route path="*" element={ <NotFound /> } />
             
           </Routes>
 
