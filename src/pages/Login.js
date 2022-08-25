@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useLogin } from "../hooks/useLogin"
+import { Link } from "react-router-dom";
 import './login.css';
 
 const Login = () => {
@@ -44,8 +45,11 @@ const Login = () => {
                             </label>
                             <input type="password" placeholder="Your Password..." className="input input-bordered w-full lg:max-w-xs" onChange={(e) => setPassword(e.target.value)} value={password} />
                         </div>
-
-                        <button className="btn btn-primary w-full" disabled={isLoading}>Login</button>
+                        
+                        <div>
+                            <button className="btn btn-primary w-full" disabled={isLoading}>Login</button>
+                            <Link className="btn btn-success w-full mt-2" disabled={isLoading} to="/signup">Signup</Link>
+                        </div>
 
                     </form>
                 </div>

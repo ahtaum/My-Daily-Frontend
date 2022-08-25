@@ -19,6 +19,7 @@ const Home = () => {
             })
             const json = await response.json()
 
+            
             if (response.ok) {
                 setLoading(false)
                 dispatch({type: 'SET_DAILY', payload: json})
@@ -39,9 +40,10 @@ const Home = () => {
 
                 <div>
                     { loading && <div>Bentar...</div> }
-                    { daily && daily.map(dataDaily => (
+                    { !loading && daily.map(dataDaily => (
                         <Data daily={dataDaily} key={dataDaily._id} />
                     )) }
+                    { !daily && <h1>Belum Ada data...</h1> }
                 </div>
 
                 <FormCreate />

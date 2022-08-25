@@ -50,7 +50,7 @@ const FormCreate = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit} className="lg:mt-0 mt-20">
+        <form onSubmit={handleSubmit} className="lg:mt-0 mt-20 lg:fixed lg:right-32 lg:w-4/12 md:fixed md:right-20">
 
             {error &&
                 <div className="alert alert-error shadow-lg mb-5">
@@ -82,7 +82,7 @@ const FormCreate = () => {
                 <textarea className={emptyField.includes('desc') ? 'textarea input-error' : 'textarea textarea-primary'} placeholder="deskripsi..." onChange={(e) => setDesc(e.target.value)} value={desc}></textarea>
             </div>
 
-            { loading && <button className="btn btn-primary" disabled={loading}>OK</button> }
+            { loading && <button className="btn btn-primary" disabled={setLoading}>OK</button> }
             { !loading && <button className="btn btn-primary">OK</button> }
 
         </form>

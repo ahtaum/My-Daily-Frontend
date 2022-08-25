@@ -36,7 +36,7 @@ const Detail = () => {
     return (
         <section className="container lg:p-0 p-5" id="detail-page">
             { loading && <div>Bentar...</div> }
-            { daily && daily.map(data => (
+            { !loading && daily.map(data => (
                 <div className="card w-full bg-base-100 shadow-xl my-8" key={ data._id }>
                     <div className="card-body">
                         <div>
