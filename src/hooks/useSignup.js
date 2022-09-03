@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useAuthContext } from "./useAuthContext"
+import urlApi from "../config/urlApi"
 
 export const useSignup = () => {
     const [error, setError] = useState(null)
@@ -10,7 +11,7 @@ export const useSignup = () => {
         setIsLoading(true)
         setError(null)
     
-        const response = await fetch('https://my-daily-backend.herokuapp.com/api/user/signup', {
+        const response = await fetch(`${urlApi.apiUrl}user/signup`, {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({ username, password })

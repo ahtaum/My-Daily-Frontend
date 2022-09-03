@@ -3,6 +3,7 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 import { FiTrash } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import urlApi from '../config/urlApi';
 
 const Data = ({ daily }) => {
     const { dispatch } = useDailyContext()
@@ -13,7 +14,7 @@ const Data = ({ daily }) => {
             return
         }
 
-        const response = await fetch(`https://my-daily-backend.herokuapp.com/api/my-daily/delete-daily/${daily._id}`, {
+        const response = await fetch(`${urlApi.apiUrl}my-daily/delete-daily/${daily._id}`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${user.token}`

@@ -4,6 +4,7 @@ import { useDailyContext } from "../hooks/useDailyContext"
 import { useAuthContext } from '../hooks/useAuthContext';
 import Data from "../components/Data"
 import FormCreate from "../components/FormCreate"
+import urlApi from '../config/urlApi';
 
 const Home = () => {
     const { daily, dispatch } = useDailyContext()
@@ -12,7 +13,7 @@ const Home = () => {
     
     useEffect(() => {
         const fetchDaily = async () => {
-            const response = await fetch(`https://my-daily-backend.herokuapp.com/api/my-daily`, {
+            const response = await fetch(`${urlApi.apiUrl}my-daily`, {
                 headers: {
                     'Authorization': `Bearer ${user.token}`
                 }
