@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useDailyContext } from '../hooks/useDailyContext';
 import { useAuthContext } from '../hooks/useAuthContext';
+import urlApi from '../config/urlApi';
 
 const FormCreate = () => {
     const { dispatch } = useDailyContext()
@@ -23,7 +24,7 @@ const FormCreate = () => {
     
         const daily = {title, desc}
         
-        const response = await fetch('https://my-daily-backend.herokuapp.com/api/my-daily/create-daily', {
+        const response = await fetch(`${urlApi.apiUrl}my-daily/create-daily`, {
           method: 'POST',
           body: JSON.stringify(daily),
           headers: {

@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom';
 import { useDailyContext } from '../hooks/useDailyContext';
 import { useAuthContext } from '../hooks/useAuthContext';
+import urlApi from '../config/urlApi';
 
 const Edit = () => {
 
@@ -26,7 +27,7 @@ const Edit = () => {
 
         const daily = {title, desc}
 
-        const response = await fetch(`https://my-daily-backend.herokuapp.com/api/my-daily/update-daily/${id}`, {
+        const response = await fetch(`${urlApi.apiUrl}my-daily/update-daily/${id}`, {
             method: 'PATCH',
             body: JSON.stringify(daily),
             headers: {

@@ -3,6 +3,7 @@ import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 import { useEffect, useState } from "react"
 import { useDailyContext } from "../hooks/useDailyContext"
 import { useAuthContext } from '../hooks/useAuthContext';
+import urlApi from '../config/urlApi';
 import './detail.css'
 
 const Detail = () => {
@@ -17,7 +18,7 @@ const Detail = () => {
                 return
             }
             
-            const response = await fetch(`https://my-daily-backend.herokuapp.com/api/my-daily/get-daily/${id}`, {
+            const response = await fetch(`${urlApi.apiUrl}my-daily/get-daily/${id}`, {
                 headers: {
                     'Authorization': `Bearer ${user.token}`
                 }
